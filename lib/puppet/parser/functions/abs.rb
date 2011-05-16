@@ -63,7 +63,7 @@ For example:
     klass = value.class
 
     # This should cover all the generic numeric types present in Puppet ...
-    if not klass.ancestors.include?(Numeric) and not value.is_a?(String)
+    unless klass.ancestors.include?(Numeric) or value.is_a?(String)
       raise(Puppet::ParseError, 'abs(): Requires ' +
         'a numeric value to work with')
     end
