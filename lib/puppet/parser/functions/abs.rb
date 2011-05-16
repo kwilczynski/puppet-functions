@@ -31,14 +31,20 @@ For example:
 
   Given the following statements:
 
-    $a = -1
-    $b = -1.0
+    $a = 1
+    $b = 1.0
+    $c = -1
+    $d = -1.0
 
     notice abs($a)
     notice abs($b)
+    notice abs($c)
+    notice abs($d)
 
   The result will be as follows:
 
+    notice: Scope(Class[main]): 1
+    notice: Scope(Class[main]): 1.0
     notice: Scope(Class[main]): 1
     notice: Scope(Class[main]): 1.0
     EOS
