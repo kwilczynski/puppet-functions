@@ -19,7 +19,7 @@
 
 module Puppet::Parser::Functions
   newfunction(:num2str, :type => :rvalue, :doc => <<-EOS
-Returns the string representation of any numeric data type after conversion.
+Returns a string representation of any numeric data type after conversion.
 
 Prototype:
 

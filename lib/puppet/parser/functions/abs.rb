@@ -19,7 +19,7 @@
 
 module Puppet::Parser::Functions
   newfunction(:abs, :type => :rvalue, :doc => <<-EOS
-Returns the absolute value of the argument given.
+Returns an absolute value of the argument given.
 
 Prototype:
 
