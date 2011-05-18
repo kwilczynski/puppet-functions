@@ -65,7 +65,7 @@ For example:
         "given (#{arguments.size} for 1)")
     end
 
-    numeric = arguments[0]
+    numeric = arguments.shift
     klass   = numeric.class
 
     # This should cover all the generic numeric types present in Puppet ...

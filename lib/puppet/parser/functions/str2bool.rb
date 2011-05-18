@@ -19,7 +19,7 @@
 
 module Puppet::Parser::Functions
   newfunction(:str2bool, :type => :rvalue, :doc => <<-EOS
-Returns a boolean value after conversion from boolean-alike textual representation.
+Returns a boolean value after conversion from string which resembles boolean.
 
 Prototype:
 
@@ -75,7 +75,7 @@ For example:
         "given (#{arguments.size} for 1)")
     end
 
-    string = arguments[0]
+    string = arguments.shift
 
     unless string.is_a?(String)
       raise(Puppet::ParseError, 'str2bool(): Requires ' +
