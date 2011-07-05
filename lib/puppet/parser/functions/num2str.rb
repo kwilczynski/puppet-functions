@@ -23,9 +23,9 @@ Returns a string representation of any numeric data type after conversion.
 
 Prototype:
 
-    num2str(x)
+    num2str(n)
 
-Where x is a numeric value.
+Where n is a numeric value.
 
 For example:
 
@@ -56,22 +56,16 @@ For example:
     # Puppet manifest or alternatively form a template it will always
     # do the right thing ...
     #
-    if arguments.is_a?(String)
-      arguments = [ arguments ]
-    end
+    arguments.to_a if arguments.is_a?(String)
 
-    if arguments.size < 1
-      raise(Puppet::ParseError, "num2str(): Wrong number of arguments " +
-        "given (#{arguments.size} for 1)")
-    end
+    raise Puppet::ParseError, "num2str(): Wrong number of arguments " +
+      "given (#{arguments.size} for 1)" if arguments.size < 1
 
     numeric = arguments.shift
-    klass   = numeric.class
 
     # This should cover all the generic numeric types present in Puppet ...
-    unless klass.ancestors.include?(Numeric) or numeric.is_a?(String)
-      raise(Puppet::ParseError, 'num2str(): Requires ' +
-        'a numeric value to work with')
+    unless numeric.class.ancestors.include?(Numeric) or numeric.is_a?(String)
+      raise Puppet::ParseError, 'num2str(): Requires a numeric type to work with'
     end
 
     # Numbers in Puppet are often string-encoded which is troublesome ...
@@ -81,15 +75,13 @@ For example:
       elsif numeric.match(/^-?\d+$/)              # Integer
         numeric = numeric.to_i
       else
-        raise(Puppet::ParseError, 'num2str(): Requires ' +
-          'either integer or float to work with')
+        raise Puppet::ParseError, 'num2str(): Requires either integer ' +
+          'or float value to work with'
       end
     end
 
     # We have a numeric value to handle ...
-    result = numeric.to_s
-
-    return result
+    numeric.to_s
   end
 end
 

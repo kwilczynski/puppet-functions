@@ -66,24 +66,18 @@ For example:
     # Puppet manifest or alternatively form a template it will always
     # do the right thing ...
     #
-    if arguments.is_a?(String)
-      arguments = [ arguments ]
-    end
+    arguments.to_a if arguments.is_a?(String)
 
-    if arguments.size < 1
-      raise(Puppet::ParseError, "str2bool(): Wrong number of arguments " +
-        "given (#{arguments.size} for 1)")
-    end
+    raise Puppet::ParseError, "str2bool(): Wrong number of arguments " +
+      "given (#{arguments.size} for 1)" if arguments.size < 1
 
     string = arguments.shift
 
-    unless string.is_a?(String)
-      raise(Puppet::ParseError, 'str2bool(): Requires ' +
-        'a string to work with')
-    end
+    raise Puppet::ParseError, 'str2bool(): Requires a string type ' +
+      'to work with' unless string.is_a?(String)
 
     # We consider all the boolean-alike values too ...
-    result = case string
+    string = case string
       #
       # This is how undef looks like in Puppet ...
       # We yield false in this case.
@@ -93,10 +87,10 @@ For example:
       when /^(0|f|n|false|no)$/  then false
       when /^(undef|undefined)$/ then false # This is not likely to happen ...
       else
-        raise(Puppet::ParseError, 'str2bool(): Unknown type of boolean given')
+        raise Puppet::ParseError, 'str2bool(): Unknown type of boolean given'
     end
 
-    return result
+    string
   end
 end
 

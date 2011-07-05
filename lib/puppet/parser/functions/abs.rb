@@ -23,9 +23,9 @@ Returns an absolute value of the argument given.
 
 Prototype:
 
-    abs(x)
+    abs(n)
 
-Where x is a numeric value.
+Where n is a numeric value.
 
 For example:
 
@@ -56,22 +56,17 @@ For example:
     # Puppet manifest or alternatively form a template it will always
     # do the right thing ...
     #
-    if arguments.is_a?(String)
-      arguments = [ arguments ]
-    end
+    arguments.to_a if arguments.is_a?(String)
 
-    if arguments.size < 1
-      raise(Puppet::ParseError, "abs(): Wrong number " +
-        "of arguments given (#{arguments.size} for 1)")
-    end
+
+    raise Puppet::ParseError, "abs(): Wrong number of arguments " +
+      "given (#{arguments.size} for 1)" if arguments.size < 1
 
     value = arguments.shift
-    klass = value.class
 
     # This should cover all the generic numeric types present in Puppet ...
-    unless klass.ancestors.include?(Numeric) or value.is_a?(String)
-      raise(Puppet::ParseError, 'abs(): Requires ' +
-        'a numeric value to work with')
+    unless value.class.ancestors.include?(Numeric) or value.is_a?(String)
+      raise Puppet::ParseError, 'abs(): Requires a numeric type to work with'
     end
 
     # Numbers in Puppet are often string-encoded which is troublesome ...
@@ -81,15 +76,13 @@ For example:
       elsif value.match(/^-?\d+$/)              # Integer
         value = value.to_i
       else
-        raise(Puppet::ParseError, 'abs(): Requires ' +
-          'either integer or float to work with')
+        raise Puppet::ParseError, 'abs(): Requires either integer ' +
+          'or float value to work with'
       end
     end
 
     # We have a numeric value to handle ...
-    result = value.abs
-
-    return result
+    value.abs
   end
 end
 

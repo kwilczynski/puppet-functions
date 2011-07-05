@@ -19,8 +19,9 @@
 
 module Puppet::Parser::Functions
   newfunction(:join, :type => :rvalue, :doc => <<-EOS
-Returns a string which is the concatenation of each element of
-the array into a string using separator given.
+Returns a string which is the concatenation of each element of the
+array into a string using separator given.
+
 
 Prototype:
 
@@ -47,29 +48,22 @@ For example:
   ) do |arguments|
 
     # Technically we support two arguments but only first is mandatory ...
-    if arguments.size < 1
-      raise(Puppet::ParseError, "join(): Wrong number of arguments " +
-        "given (#{arguments.size} for 1)")
-    end
+    raise Puppet::ParseError, "join(): Wrong number of arguments " +
+      "given (#{arguments.size} for 1)" if arguments.size < 1
 
-    array = arguments[0]
+    array = arguments.shift
 
-    unless array.is_a?(Array)
-      raise(Puppet::ParseError, 'join(): Requires an array to work with')
-    end
+    raise Puppet::ParseError, 'join(): Requires an array ' +
+      'type to work with' unless array.is_a?(Array)
 
-    separator = arguments[1] if arguments[1]
+    separator = arguments.shift unless arguments.empty?
 
-    if separator
-      unless separator.is_a?(String)
-        raise(Puppet::ParseError, 'join(): Requires separator to be a string')
-      end
+    if separator and not separator.is_a?(String)
+      raise Puppet::ParseError, 'join(): Requires separator to be a string type'
     end
 
     # We join with separator or just join ...
-    result = separator ? array.join(separator) : array.join
-
-    return result
+    separator ? array.join(separator) : array.join
   end
 end
 

@@ -29,8 +29,8 @@ Where x is either a boolean type or a string given in one of the
 following boolean-alike forms:
 
   When given as either '1', 't', 'y', 'true' or 'yes' it will evaluate
-  as true whereas when given as either '0', 'f', 'n', 'false' or 'no'
-  then it will evaluate as false.
+  as 1 whereas when given as either '0', 'f', 'n', 'false' or 'no'
+  then it will evaluate as 0.
 
 For example:
 
@@ -73,22 +73,17 @@ For example:
     # Puppet manifest or alternatively form a template it will always
     # do the right thing ...
     #
-    if arguments.is_a?(String)
-      arguments = [ arguments ]
-    end
+    arguments.to_a if arguments.is_a?(String)
 
-    if arguments.size < 1
-      raise(Puppet::ParseError, "bool2num(): Wrong number " +
-        "of arguments given (#{arguments.size} for 1)")
-    end
+    raise Puppet::ParseError, "bool2num(): Wrong number of arguments " +
+      "given (#{arguments.size} for 1)" if arguments.size < 1
 
     boolean = arguments.shift
-    klass   = boolean.class
 
     # We can have either true, false, or string which resembles boolean ...
-    unless [TrueClass, FalseClass, String].include?(klass)
-      raise(Puppet::ParseError, 'bool2num(): Requires ' +
-        'either boolean or string to work with')
+    unless [TrueClass, FalseClass, String].include?(boolean.class)
+      raise Puppet::ParseError, 'bool2num(): Requires either boolean ' +
+        'or string type to work with'
     end
 
     if boolean.is_a?(String)
@@ -103,15 +98,12 @@ For example:
         when /^(0|f|n|false|no)$/  then false
         when /^(undef|undefined)$/ then false # This is not likely to happen ...
         else
-          raise(Puppet::ParseError, 'bool2num(): Unknown ' +
-            'type of boolean given')
+          raise Puppet::ParseError, 'bool2num(): Unknown type of boolean given'
       end
     end
 
     # We have real boolean values as at this point ...
-    result = boolean ? 1 : 0
-
-    return result
+    boolean ? 1 : 0
   end
 end
 
