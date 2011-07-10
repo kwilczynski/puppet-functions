@@ -19,9 +19,8 @@
 
 module Puppet::Parser::Functions
   newfunction(:join, :type => :rvalue, :doc => <<-EOS
-Returns a string which is the concatenation of each element of the
+Returns a new string which is the concatenation of each element of the
 array into a string using separator given.
-
 
 Prototype:
 
@@ -34,8 +33,8 @@ For example:
 
   Given the following statements:
 
-    $a = [ 'a', 'b', 'c' ]
-    $b = ','
+    $a = ["a", "b", "c"]
+    $b = ","
 
     notice join($a)
     notice join($a, $b)
@@ -53,13 +52,13 @@ For example:
 
     array = arguments.shift
 
-    raise Puppet::ParseError, 'join(): Requires an array ' +
-      'type to work with' unless array.is_a?(Array)
+    raise Puppet::ParseError, 'join(): Requires an array type ' +
+      'to work with' unless array.is_a?(Array)
 
     separator = arguments.shift unless arguments.empty?
 
     if separator and not separator.is_a?(String)
-      raise Puppet::ParseError, 'join(): Requires separator to be a string type'
+      raise Puppet::ParseError, 'join(): Requires separator to be of a string type'
     end
 
     # We join with separator or just join ...

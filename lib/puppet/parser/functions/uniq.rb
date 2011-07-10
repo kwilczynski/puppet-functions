@@ -58,8 +58,8 @@ For example:
     value = arguments.shift
 
     unless [Array, String].include?(value.class)
-      raise Puppet::ParseError, 'uniq(): Requires either array ' +
-        'or string type to work with'
+      raise Puppet::ParseError, 'uniq(): Requires either array type ' +
+        'or string value to work with'
     end
 
     if value.is_a?(String)

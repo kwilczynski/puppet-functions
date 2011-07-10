@@ -28,8 +28,8 @@ Prototype:
 Where x is either a boolean type or a string value given in one of the
 following boolean-alike forms:
 
-  When given as either '1', 't', 'y', 'true' or 'yes' it will evaluate
-  as 1 whereas when given as either '0', 'f', 'n', 'false' or 'no'
+  When given as either "1", "t", "y", "true" or "yes" it will evaluate
+  as 1 whereas when given as either "0", "f", "n", "false" or "no"
   then it will evaluate as 0.
 
 For example:
@@ -38,12 +38,12 @@ For example:
 
     $a = true
     $b = false
-    $c = 'yes'
-    $d = 'no'
-    $e = 't'
-    $f = 'f'
-    $g = '1'
-    $h = '0'
+    $c = "yes"
+    $d = "no"
+    $e = "t"
+    $f = "f"
+    $g = "1"
+    $h = "0"
 
     notice bool2num($a)
     notice bool2num($b)
@@ -82,8 +82,8 @@ For example:
 
     # We can have either true, false, or string which resembles boolean ...
     unless [TrueClass, FalseClass, String].include?(boolean.class)
-      raise Puppet::ParseError, 'bool2num(): Requires either boolean ' +
-        'or string type to work with'
+      raise Puppet::ParseError, 'bool2num(): Requires either boolean type ' +
+        'or string value to work with'
     end
 
     if boolean.is_a?(String)

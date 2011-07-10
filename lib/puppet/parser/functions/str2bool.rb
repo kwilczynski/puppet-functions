@@ -27,20 +27,20 @@ Prototype:
 
 Where s is a string value given in one of the following boolean-alike forms:
 
-  When given as either '1', 't', 'y', 'true' or 'yes' it will evaluate
-  as true whereas when given as either '0', 'f', 'n', 'false' or 'no'
+  When given as either "1", "t", "y", "true" or "yes" it will evaluate
+  as true whereas when given as either "0", "f", "n", "false" or "no"
   then it will evaluate as false.
 
 For example:
 
   Given the following statements:
 
-    $a = 'yes'
-    $b = 'no'
-    $c = 't'
-    $d = 'f'
-    $e = '1'
-    $f = '0'
+    $a = "yes"
+    $b = "no"
+    $c = "t"
+    $d = "f"
+    $e = "1"
+    $f = "0"
 
     notice str2bool($a)
     notice str2bool($b)
