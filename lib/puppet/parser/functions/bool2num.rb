@@ -25,7 +25,7 @@ Prototype:
 
     bool2num(x)
 
-Where x is either a boolean type or a string given in one of the
+Where x is either a boolean type or a string value given in one of the
 following boolean-alike forms:
 
   When given as either '1', 't', 'y', 'true' or 'yes' it will evaluate

@@ -25,7 +25,7 @@ Prototype:
 
     str2bool(s)
 
-Where s is a string given in one of the following boolean-alike forms:
+Where s is a string value given in one of the following boolean-alike forms:
 
   When given as either '1', 't', 'y', 'true' or 'yes' it will evaluate
   as true whereas when given as either '0', 'f', 'n', 'false' or 'no'
