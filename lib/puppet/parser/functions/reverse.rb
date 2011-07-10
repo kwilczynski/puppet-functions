@@ -37,7 +37,7 @@ For example:
     notice reverse($a)
     notice reverse($b)
 
-  The result may look as follows:
+  The result will be as follows:
 
     notice: Scope(Class[main]): cba
     notice: Scope(Class[main]): f e d

@@ -37,7 +37,7 @@ For example:
     notice first($a)
     notice first($b)
 
-  The result may look as follows:
+  The result will be as follows:
 
     notice: Scope(Class[main]): a
     notice: Scope(Class[main]): d

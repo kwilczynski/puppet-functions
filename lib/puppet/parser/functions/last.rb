@@ -37,7 +37,7 @@ For example:
     notice last($a)
     notice last($b)
 
-  The result may look as follows:
+  The result will be as follows:
 
     notice: Scope(Class[main]): c
     notice: Scope(Class[main]): f

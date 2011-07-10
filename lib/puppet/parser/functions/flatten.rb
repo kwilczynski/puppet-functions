@@ -40,7 +40,7 @@ For example:
     notice flatten($b)
     notice flatten($c)
 
-  The result may look as follows:
+  The result will be as follows:
 
     notice: Scope(Class[main]): a
     notice: Scope(Class[main]): a b c

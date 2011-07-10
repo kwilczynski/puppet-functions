@@ -37,7 +37,7 @@ For example:
     notice compact($a)
     notice compact($b)
 
-  The result may look as follows:
+  The result will be as follows:
 
     notice: Scope(Class[main]): a c e f
     notice: Scope(Class[main]): x y
