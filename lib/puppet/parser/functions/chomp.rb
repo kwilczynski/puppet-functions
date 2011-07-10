@@ -35,8 +35,8 @@ module Puppet::Parser::Functions
     value = arguments.shift
 
     unless [Array, String].include?(value.class)
-      raise Puppet::ParseError, 'chomp(): Requires either array ' +
-        'or string to work with'
+      raise Puppet::ParseError, 'chomp(): Requires either array type ' +
+        'or string value to work with'
     end
 
     if value.is_a?(Array)
