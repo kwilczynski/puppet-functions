@@ -44,7 +44,14 @@ For example:
     notice: Scope(Class[main]): abc
     notice: Scope(Class[main]): a,b,c
     EOS
-  ) do |arguments|
+  ) do |*arguments|
+
+    #
+    # This is to ensure that whenever we call this function from within
+    # the Puppet manifest or alternatively form a template it will always
+    # do the right thing ...
+    #
+    arguments = arguments.shift if arguments.first.is_a?(Array)
 
     # Technically we support two arguments but only first is mandatory ...
     raise Puppet::ParseError, "join(): Wrong number of arguments " +

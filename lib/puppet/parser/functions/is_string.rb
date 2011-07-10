@@ -70,15 +70,14 @@ For example:
     We try accommodate for this and parse any string with an attempt to cast
     into an appropriate numeric type but this may not be absolutely perfect.
     EOS
-  ) do |arguments|
+  ) do |*arguments|
 
     #
-    # We put arguments that are strings back into the array.  This is
-    # to ensure that whenever we call this function from within the
-    # Puppet manifest or alternatively form a template it will always
+    # This is to ensure that whenever we call this function from within
+    # the Puppet manifest or alternatively form a template it will always
     # do the right thing ...
     #
-    arguments.to_a if arguments.is_a?(String)
+    arguments = arguments.shift if arguments.first.is_a?(Array)
 
     raise Puppet::ParseError, "is_string(): Wrong number of arguments " +
       "given (#{arguments.size} for 1)" if arguments.size < 1

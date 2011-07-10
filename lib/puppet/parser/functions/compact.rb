@@ -42,7 +42,14 @@ For example:
     notice: Scope(Class[main]): a c e f
     notice: Scope(Class[main]): x y
     EOS
-  ) do |arguments|
+  ) do |*arguments|
+
+    #
+    # This is to ensure that whenever we call this function from within
+    # the Puppet manifest or alternatively form a template it will always
+    # do the right thing ...
+    #
+    arguments = arguments.shift if arguments.first.is_a?(Array)
 
     raise Puppet::ParseError, "compact(): Wrong number of arguments " +
       "given (#{arguments.size} for 1)" if arguments.size < 1
