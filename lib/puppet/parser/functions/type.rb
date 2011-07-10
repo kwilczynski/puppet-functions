@@ -33,10 +33,12 @@ For example:
 
     $a = true
     $b = 1
-    $c = 1.0
-    $d = ""
-    $e = []
-    $f = {}
+    $c = -1
+    $d = 1.0
+    $e = -1.0
+    $f = ""
+    $g = []
+    $h = {}
 
     notice type($a)
     notice type($b)
@@ -44,11 +46,16 @@ For example:
     notice type($d)
     notice type($e)
     notice type($f)
+    notice type($g)
+    notice type($h)
+
 
   The result will be as follows:
 
     notice: Scope(Class[main]): Boolean
     notice: Scope(Class[main]): Integer
+    notice: Scope(Class[main]): Integer
+    notice: Scope(Class[main]): Float
     notice: Scope(Class[main]): Float
     notice: Scope(Class[main]): String
     notice: Scope(Class[main]): Array
@@ -57,7 +64,7 @@ For example:
   Known issues:
 
     Both non-negative integer and floating-point numbers are conceptually
-    a strings in Puppet e.g. both 1.0 and "1.0" will be strings in Puppet
+    strings in Puppet e.g. both 1.0 and "1.0" will be strings in Puppet
     whereas -1.0 and "-1.0" differ as former in this case is a floating-point
     number with latter being simply a string.
 
