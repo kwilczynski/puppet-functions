@@ -49,7 +49,6 @@ For example:
     notice type($g)
     notice type($h)
 
-
   The result will be as follows:
 
     notice: Scope(Class[main]): Boolean
