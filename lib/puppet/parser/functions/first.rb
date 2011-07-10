@@ -49,7 +49,7 @@ For example:
 
     array = arguments.shift
 
-    raise Puppet::ParseError, 'first(): Requires an array ' +
+    raise Puppet::ParseError, 'first(): Requires an array type ' +
       'to work with' unless array.is_a?(Array)
 
     array.first
