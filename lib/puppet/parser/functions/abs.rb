@@ -58,7 +58,6 @@ For example:
     #
     arguments.to_a if arguments.is_a?(String)
 
-
     raise Puppet::ParseError, "abs(): Wrong number of arguments " +
       "given (#{arguments.size} for 1)" if arguments.size < 1
 
