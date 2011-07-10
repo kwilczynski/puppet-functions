@@ -19,7 +19,7 @@
 
 module Puppet::Parser::Functions
   newfunction(:uniq, :type => :rvalue, :doc => <<-EOS
-Returns either new array or string by removing duplicates values for it.
+Returns either a new array or string by removing duplicate values within.
 
 Prototype:
 
