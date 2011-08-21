@@ -33,8 +33,8 @@ For example:
 
   Given the following statements:
 
-    $a = ["a", "b", "c"]
-    $b = ","
+    $a = ['a', 'b', 'c']
+    $b = ','
 
     notice join($a)
     notice join($a, $b)

@@ -31,8 +31,8 @@ For example:
 
   Given the following statements:
 
-    $a = "abc"
-    $b = ["d", "e", "f"]
+    $a = 'abc'
+    $b = ['d', 'e', 'f']
 
     notice reverse($a)
     notice reverse($b)

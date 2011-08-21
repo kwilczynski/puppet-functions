@@ -31,8 +31,8 @@ For example:
 
   Given the following statements:
 
-    $a = "abbc"
-    $b = ["d", "e", "e", "f", "f"]
+    $a = 'abbc'
+    $b = ['d', 'e', 'e', 'f', 'f']
 
     notice uniq($a)
     notice uniq($b)

@@ -32,9 +32,9 @@ For example:
 
   Given the following statements:
 
-    $a = ["a"]
-    $b = [$a, ["b", "c"]]
-    $c = [$b, "d", "e", "f"]
+    $a = ['a']
+    $b = [$a, ['b', 'c']]
+    $c = [$b, 'd', 'e', 'f']
 
     notice flatten($a)
     notice flatten($b)

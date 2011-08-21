@@ -31,8 +31,8 @@ For example:
 
   Given the following statements:
 
-    $a = "abcdef"
-    $b = ["a", "b", "c", "d", "e", "f"]
+    $a = 'abcdef'
+    $b = ['a', 'b', 'c', 'd', 'e', 'f']
 
     notice shuffle($a)
     notice shuffle($b)

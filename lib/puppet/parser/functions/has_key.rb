@@ -31,11 +31,11 @@ For example:
 
   Given the following statements:
 
-    $a = { "a" => 1, "b" => 2, "c" => 3 }
-    $b = { "def" => 123, "xyz" => 456 }
+    $a = { 'a' => 1, 'b' => 2, 'c' => 3 }
+    $b = { 'def' => 123, 'xyz' => 456 }
 
-    notice has_key($a, "abc")
-    notice has_key($b, "x")
+    notice has_key($a, 'abc')
+    notice has_key($b, 'x')
 
   The result will be as follows:
 

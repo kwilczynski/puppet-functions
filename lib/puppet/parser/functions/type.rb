@@ -36,7 +36,7 @@ For example:
     $c = -1
     $d = 1.0
     $e = -1.0
-    $f = ""
+    $f = ''
     $g = []
     $h = {}
 
@@ -63,8 +63,8 @@ For example:
   Known issues:
 
     Both non-negative integer and floating-point numbers are conceptually
-    strings in Puppet e.g. both 1.0 and "1.0" will be strings in Puppet
-    whereas -1.0 and "-1.0" differ as former in this case is a floating-point
+    strings in Puppet e.g. both 1.0 and '1.0' will be strings in Puppet
+    whereas -1.0 and '-1.0' differ as former in this case is a floating-point
     number with latter being simply a string.
 
     We try accommodate for this and parse any string with an attempt to cast

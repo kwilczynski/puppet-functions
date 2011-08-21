@@ -31,8 +31,8 @@ For example:
 
   Given the following statements:
 
-    $a = ["a", "", "c", "", "e", "f", ""]
-    $b = ["", "x", "y", ""]
+    $a = ['a', '', 'c', '', 'e', 'f', '']
+    $b = ['', 'x', 'y', '']
 
     notice compact($a)
     notice compact($b)

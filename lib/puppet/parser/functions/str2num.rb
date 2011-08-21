@@ -31,14 +31,14 @@ For example:
 
   Given the following statements:
 
-    $a = "1"
-    $b = "-1"
-    $c = "1.0"
-    $d = "-1.0"
-    $e = "abc1"
-    $f = "1def"
-    $g = ""
-    $h = "abc"
+    $a = '1'
+    $b = '-1'
+    $c = '1.0'
+    $d = '-1.0'
+    $e = 'abc1'
+    $f = '1def'
+    $g = ''
+    $h = 'abc'
 
     notice str2num($a)
     notice str2num($b)

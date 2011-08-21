@@ -31,8 +31,8 @@ For example:
 
   Given the following statements:
 
-    $a = ["a", "b", "c"]
-    $b = ["d", "e", "f"]
+    $a = ['a', 'b', 'c']
+    $b = ['d', 'e', 'f']
 
     notice first($a)
     notice first($b)

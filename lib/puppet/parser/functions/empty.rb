@@ -32,12 +32,12 @@ For example:
 
   Given the following statements:
 
-    $a = ""
-    $b = "abc"
+    $a = ''
+    $b = 'abc'
     $c = []
-    $d = ["d", "e", "f"]
+    $d = ['d', 'e', 'f']
     $e = {}
-    $f = { "x" => 1, "y" => 2, "z" => 3 }
+    $f = { 'x' => 1, 'y' => 2, 'z' => 3 }
 
     notice empty($a)
     notice empty($b)

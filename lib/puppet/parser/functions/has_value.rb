@@ -31,8 +31,8 @@ For example:
 
   Given the following statements:
 
-    $a = { "a" => 1, "b" => 2, "c" => 3 }
-    $b = { "def" => 123, "xyz" => 456 }
+    $a = { 'a' => 1, 'b' => 2, 'c' => 3 }
+    $b = { 'def' => 123, 'xyz' => 456 }
 
     notice has_value($a, 1)
     notice has_value($b, 111)
