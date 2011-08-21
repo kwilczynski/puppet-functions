@@ -34,8 +34,8 @@ For example:
     $a = { 'a' => 1, 'b' => 2, 'c' => 3 }
     $b = { 'def' => 123, 'xyz' => 456 }
 
-    notice reverse($a)
-    notice reverse($b)
+    notice keys($a)
+    notice keys($b)
 
   The result will be as follows:
 
