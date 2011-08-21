@@ -19,9 +19,22 @@
 
 module Puppet::Parser::Functions
   newfunction(:downcase, :type => :rvalue, :doc => <<-EOS
+Returns
+
+Prototype:
+
+
+
+Where
+
+For example:
+
+  Given the following statements:
+
+  The result will be as follows:
+
     EOS
   ) do |*arguments|
-
     #
     # This is to ensure that whenever we call this function from within
     # the Puppet manifest or alternatively form a template it will always
