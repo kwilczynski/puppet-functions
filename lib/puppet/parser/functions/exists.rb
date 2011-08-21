@@ -48,7 +48,7 @@ For example:
     makes no sense to use it when checking whether a file and/or directory
     exists on the client side.
     EOS
-  ) do |arguments|
+  ) do |*arguments|
 
     #
     # This is to ensure that whenever we call this function from within
