@@ -19,7 +19,7 @@
 
 module Puppet::Parser::Functions
   newfunction(:first, :type => :rvalue, :doc => <<-EOS
-Returns first element from an array given.
+Returns the first element from an array given.
 
 Prototype:
 
@@ -43,7 +43,6 @@ For example:
     notice: Scope(Class[main]): d
     EOS
   ) do |*arguments|
-
     #
     # This is to ensure that whenever we call this function from within
     # the Puppet manifest or alternatively form a template it will always

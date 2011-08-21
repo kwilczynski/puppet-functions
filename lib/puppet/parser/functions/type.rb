@@ -71,7 +71,6 @@ For example:
     into an appropriate numeric type but this may not be absolutely perfect.
     EOS
   ) do |*arguments|
-
     #
     # This is to ensure that whenever we call this function from within
     # the Puppet manifest or alternatively form a template it will always

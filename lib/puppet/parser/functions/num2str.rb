@@ -1,5 +1,5 @@
 #
-# num2bool.rb
+# num2str.rb
 #
 # Copyright 2011 Puppet Labs Inc.
 # Copyright 2011 Krzysztof Wilczynski
@@ -49,7 +49,6 @@ For example:
     notice: Scope(Class[main]): -1.0
     EOS
   ) do |*arguments|
-
     #
     # This is to ensure that whenever we call this function from within
     # the Puppet manifest or alternatively form a template it will always

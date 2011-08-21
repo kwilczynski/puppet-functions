@@ -48,7 +48,6 @@ For example:
     notice: Scope(Class[main]): 123def456xyz
     EOS
   ) do |*arguments|
-
     #
     # This is to ensure that whenever we call this function from within
     # the Puppet manifest or alternatively form a template it will always
