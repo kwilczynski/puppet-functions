@@ -42,11 +42,14 @@ For example:
     notice: Scope(Class[main]): true
     notice: Scope(Class[main]): false
 
-  Note:
+  Known issues:
 
     This function will ONLY be evaluated on the Puppet Master side and it
     makes no sense to use it when checking whether a file and/or directory
     exists on the client side.
+
+    There is no support for "file://" and "puppet://" URI type resolution
+    at this point in time.
     EOS
   ) do |*arguments|
     #

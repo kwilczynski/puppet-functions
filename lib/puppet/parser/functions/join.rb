@@ -19,8 +19,8 @@
 
 module Puppet::Parser::Functions
   newfunction(:join, :type => :rvalue, :doc => <<-EOS
-Returns a new string which is the concatenation of each element of the
-array into a string using separator given.
+Returns a new string which is the concatenation of each element of the array
+into a string using separator given.
 
 Prototype:
 
