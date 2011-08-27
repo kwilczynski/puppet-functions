@@ -72,6 +72,14 @@ For example:
     raise Puppet::ParseError, 'uuid(): Requires a string type ' +
       'to work with' unless domain.is_a?(String)
 
+    #
+    # Since UUID version 5 will concatenate specific name space with
+    # an appropriate string value e.g. a domain name, we cannot really
+    # allow for an accidental empty string value ...
+    #
+    raise Puppet::ParseError, 'uuid(): An argument given cannot ' +
+      'be an empty string value.' if domain.empty?
+
     # This is probably impossible as Digest is part of the Ruby Core ...
     begin
       require 'digest/sha1'
