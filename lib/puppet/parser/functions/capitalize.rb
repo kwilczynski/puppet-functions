@@ -19,20 +19,29 @@
 
 module Puppet::Parser::Functions
   newfunction(:capitalize, :type => :rvalue, :doc => <<-EOS
-Returns
+Returns either a new array or string by changing case of elements within
+to be upper-case for every first letter and the reminder to lower-case.
 
 Prototype:
 
+    capitalize(x)
 
-
-Where
+Where x is either an array type or string value.
 
 For example:
 
   Given the following statements:
 
+    $a = 'abc DEF'
+    $c = ['GHI', 'J', 'k']
+
+    notice capitalize($a)
+    notice capitalize($b)
+
   The result will be as follows:
 
+    notice: Scope(Class[main]): Abc def
+    notice: Scope(Class[main]): Ghi J K
     EOS
   ) do |*arguments|
     #
@@ -55,7 +64,7 @@ For example:
     if value.is_a?(Array)
       value = value.collect { |i| i.is_a?(String) ? i.capitalize : i }
     else
-      value = value.capitalize
+      value.capitalize!
     end
 
     value

@@ -19,20 +19,30 @@
 
 module Puppet::Parser::Functions
   newfunction(:swapcase, :type => :rvalue, :doc => <<-EOS
-Returns
+Returns either a new array or string by changing case of elements within
+to be upper-case for every letter that is lower-case and lower-case for
+every letter that is upper-case.
 
 Prototype:
 
+    swapcase(x)
 
-
-Where
+Where x is either an array type or string value.
 
 For example:
 
   Given the following statements:
 
+    $a = 'abc DEF'
+    $c = ['GHI', 'J', 'k']
+
+    notice swapcase($a)
+    notice swapcase($b)
+
   The result will be as follows:
 
+    notice: Scope(Class[main]): ABC def
+    notice: Scope(Class[main]): ghi j K
     EOS
   ) do |*arguments|
     #
@@ -55,7 +65,7 @@ For example:
     if value.is_a?(Array)
       value = value.collect { |i| i.is_a?(String) ? i.swapcase : i }
     else
-      value = value.swapcase
+      value.swapcase!
     end
 
     value

@@ -19,20 +19,29 @@
 
 module Puppet::Parser::Functions
   newfunction(:downcase, :type => :rvalue, :doc => <<-EOS
-Returns
+Returns either a new array or string by changing case of elements within
+to be lower-case for every letter.
 
 Prototype:
 
+    downcase(x)
 
-
-Where
+Where x is either an array type or string value.
 
 For example:
 
   Given the following statements:
 
+    $a = 'ABC'
+    $b = ['DEF', 'G', 'h']
+
+    notice downcase($a)
+    notice downcase($b)
+
   The result will be as follows:
 
+    notice: Scope(Class[main]): abc
+    notice: Scope(Class[main]): def g h
     EOS
   ) do |*arguments|
     #
@@ -55,7 +64,7 @@ For example:
     if value.is_a?(Array)
       value = value.collect { |i| i.is_a?(String) ? i.downcase : i }
     else
-      value = value.downcase
+      value.downcase!
     end
 
     value

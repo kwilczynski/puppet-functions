@@ -19,20 +19,29 @@
 
 module Puppet::Parser::Functions
   newfunction(:upcase, :type => :rvalue, :doc => <<-EOS
-Returns
+Returns either a new array or string by changing case of elements within
+to be upper-case for every letter.
 
 Prototype:
 
+    upcase(x)
 
-
-Where
+Where x is either an array type or string value.
 
 For example:
 
   Given the following statements:
 
+    $a = 'abc'
+    $b = ['def', 'g', 'H']
+
+    notice upcase($a)
+    notice upcase($b)
+
   The result will be as follows:
 
+    notice: Scope(Class[main]): ABC
+    notice: Scope(Class[main]): DEF G H
     EOS
   ) do |*arguments|
     #
@@ -55,7 +64,7 @@ For example:
     if value.is_a?(Array)
       value = value.collect { |i| i.is_a?(String) ? i.upcase : i }
     else
-      value = value.upcase
+      value.upcase!
     end
 
     value
