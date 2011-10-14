@@ -64,14 +64,15 @@ For example:
 
     file = arguments.shift
 
-    # We want to be sure that we have the complete path ...
-    file = File.expand_path(file)
-
     raise Puppet::ParseError, 'exists(): Requires a string type ' +
       'to work with' unless file.is_a?(String)
+
+    # We want to be sure that we have the complete path ...
+    file = File.expand_path(file)
 
     File.exists?(file)
   end
 end
 
 # vim: set ts=2 sw=2 et :
+# encoding: utf-8
