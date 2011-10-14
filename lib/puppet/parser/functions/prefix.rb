@@ -34,7 +34,7 @@ For example:
   Given the following statements:
 
     $a = ['a', 'b', 'c', 1, 2, 3]
-    $b = 'element-'
+    $b = 'prefix-'
 
     notice prefix($a)
     notice prefix($a, $b)
@@ -42,7 +42,7 @@ For example:
   The result will be as follows:
 
     notice: Scope(Class[main]): a b c 1 2 3
-    notice: Scope(Class[main]): element-a element-b element-c element-1 element-2 element-3
+    notice: Scope(Class[main]): prefix-a prefix-b prefix-c prefix-1 prefix-2 prefix-3
     EOS
   ) do |*arguments|
     #
@@ -73,3 +73,4 @@ For example:
 end
 
 # vim: set ts=2 sw=2 et :
+# encoding: utf-8
