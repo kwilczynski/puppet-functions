@@ -64,7 +64,7 @@ For example:
       # We turn any string value into an array to be remove duplicates ...
       value = value.split('').uniq.join
     else
-      value = value.uniq
+      value.uniq!
     end
 
     value
@@ -72,3 +72,4 @@ For example:
 end
 
 # vim: set ts=2 sw=2 et :
+# encoding: utf-8
