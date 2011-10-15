@@ -23,16 +23,24 @@ Returns
 
 Prototype:
 
+    chomp(x)
 
-
-Where
+Where x is either an array type or string value.
 
 For example:
 
   Given the following statements:
 
+    $a = ''
+    $b = ['', '', '']
+
+    notice chomp($a)
+    notice chomp($b)
+
   The result will be as follows:
 
+    notice: Scope(Class[main]):
+    notice: Scope(Class[main]):
     EOS
   ) do |*arguments|
     #
@@ -55,7 +63,7 @@ For example:
     if value.is_a?(Array)
       value = value.collect { |i| i.is_a?(String) ? i.chomp : i }
     else
-      value = value.chomp
+      value.chomp!
     end
 
     value
@@ -63,3 +71,4 @@ For example:
 end
 
 # vim: set ts=2 sw=2 et :
+# encoding: utf-8

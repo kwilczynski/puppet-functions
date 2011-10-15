@@ -23,7 +23,7 @@ Returns
 
 Prototype:
 
-
+    strip()
 
 Where
 
@@ -31,8 +31,13 @@ For example:
 
   Given the following statements:
 
+    $a =
+
+    notice strip()
+
   The result will be as follows:
 
+    notice: Scope(Class[main]):
     EOS
   ) do |*arguments|
     #
@@ -55,7 +60,7 @@ For example:
     if value.is_a?(Array)
       value = value.collect { |i| i.is_a?(String) ? i.strip : i }
     else
-      value = value.strip
+      value.strip!
     end
 
     value
@@ -63,3 +68,4 @@ For example:
 end
 
 # vim: set ts=2 sw=2 et :
+# encoding: utf-8
