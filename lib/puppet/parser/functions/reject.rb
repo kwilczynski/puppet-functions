@@ -19,7 +19,7 @@
 
 module Puppet::Parser::Functions
   newfunction(:reject, :type => :rvalue, :doc => <<-EOS
-Returns a new array with all elements matching given regular expression removed.
+Returns a new array containing all elements that do not match given regular expression.
 
 Prototype:
 
@@ -47,9 +47,11 @@ For example:
 
   Known issues:
 
-    Currently we only support Ruby compatible regular expressions.  For more
-    information about Ruby's regular expression engine and its functionality,
-    please see the following: http://www.ruby-doc.org/core/Regexp.html.
+    Currently, rejecting both integer and floating-point values is NOT possible.
+
+    We only support Ruby compatible regular expressions.  For more information
+    about Ruby's regular expression engine and its functionality, please see
+    the following: http://www.ruby-doc.org/core/Regexp.html.
     EOS
   ) do |*arguments|
     #
