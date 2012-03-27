@@ -98,7 +98,7 @@ For example:
 
       if timeout <= 0
         raise Puppet::ParseError, 'is_port_open(): Value of optional ' +
-          'argument must be be greater than zero'
+          'argument must be greater than zero'
       end
     else
       # Pick some sane default?  Should be more than enough for local networks ...
