@@ -61,12 +61,10 @@ For example:
     end
 
     if value.is_a?(Array)
-      value = value.collect { |i| i.is_a?(String) ? i.chomp : i }
+      value.collect { |i| i.is_a?(String) ? i.chomp : i }
     else
-      value.chomp!
+      value.chomp
     end
-
-    value
   end
 end
 

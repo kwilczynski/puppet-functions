@@ -62,12 +62,10 @@ For example:
     end
 
     if value.is_a?(Array)
-      value = value.collect { |i| i.is_a?(String) ? i.upcase : i }
+      value.collect { |i| i.is_a?(String) ? i.upcase : i }
     else
-      value.upcase!
+      value.upcase
     end
-
-    value
   end
 end
 

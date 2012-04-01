@@ -58,12 +58,10 @@ For example:
     end
 
     if value.is_a?(Array)
-      value = value.collect { |i| i.is_a?(String) ? i.rstrip : i }
+      value.collect { |i| i.is_a?(String) ? i.rstrip : i }
     else
-      value.rstrip!
+      value.rstrip
     end
-
-    value
   end
 end
 

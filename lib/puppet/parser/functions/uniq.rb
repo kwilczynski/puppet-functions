@@ -62,12 +62,10 @@ For example:
 
     if value.is_a?(String)
       # We turn any string value into an array to be remove duplicates ...
-      value = value.split('').uniq.join
+      value.split('').uniq.join
     else
-      value.uniq!
+      value.uniq
     end
-
-    value
   end
 end
 
