@@ -23,7 +23,7 @@ Returns
 
 Prototype:
 
-
+    num2hex()
 
 Where
 

@@ -23,7 +23,7 @@ Returns
 
 Prototype:
 
-
+    dec2hex()
 
 Where
 

@@ -23,7 +23,7 @@ Returns
 
 Prototype:
 
-
+    count()
 
 Where
 

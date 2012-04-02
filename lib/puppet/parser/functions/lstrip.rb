@@ -31,13 +31,8 @@ For example:
 
   Given the following statements:
 
-    $a =
-
-    notice lstrip()
-
   The result will be as follows:
 
-    notice: Scope(Class[main]):
     EOS
   ) do |*arguments|
     #

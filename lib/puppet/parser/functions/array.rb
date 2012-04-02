@@ -23,7 +23,7 @@ Returns
 
 Prototype:
 
-
+    array()
 
 Where
 

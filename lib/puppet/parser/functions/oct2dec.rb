@@ -23,7 +23,7 @@ Returns
 
 Prototype:
 
-
+    oct2dec()
 
 Where
 
