@@ -1,5 +1,5 @@
 #
-# is_downcase.rb
+# is_capitalize.rb
 #
 # Copyright 2011 Puppet Labs Inc.
 # Copyright 2011 Krzysztof Wilczynski
@@ -18,12 +18,12 @@
 #
 
 module Puppet::Parser::Functions
-  newfunction(:is_downcase, :type => :rvalue, :doc => <<-EOS
+  newfunction(:is_capitalize, :type => :rvalue, :doc => <<-EOS
 Returns
 
 Prototype:
 
-    is_downcase()
+    is_capitalize()
 
 Where
 
@@ -44,10 +44,10 @@ For example:
 
     string = arguments.shift
 
-    raise Puppet::ParseError, 'is_downcase(): Requires a string type ' +
+    raise Puppet::ParseError, 'is_capitalize(): Requires a string type ' +
       'to work with' unless string.is_a?(String)
 
-    string == string.downcase
+    string == string.capitalize
   end
 end
 

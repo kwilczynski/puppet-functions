@@ -23,7 +23,7 @@ Returns
 
 Prototype:
 
-
+    is_upcase()
 
 Where
 
@@ -42,6 +42,12 @@ For example:
     #
     arguments = arguments.shift if arguments.first.is_a?(Array)
 
+    string = arguments.shift
+
+    raise Puppet::ParseError, 'is_upcase(): Requires a string type ' +
+      'to work with' unless string.is_a?(String)
+
+    string == string.upcase
   end
 end
 
