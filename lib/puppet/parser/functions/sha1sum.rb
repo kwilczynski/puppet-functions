@@ -1,7 +1,6 @@
 #
 # sha1sum.rb
 #
-# Copyright 2012 Puppet Labs Inc.
 # Copyright 2012 Krzysztof Wilczynski
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
