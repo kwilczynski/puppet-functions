@@ -77,13 +77,13 @@ For example:
     # allow for an accidental empty string value ...
     #
     raise Puppet::ParseError, 'uuid(): An argument given cannot ' +
-      'be an empty string value.' if domain.empty?
+      'be an empty string value' if domain.empty?
 
     # This is probably impossible as Digest is part of the Ruby Core ...
     begin
       require 'digest/sha1'
     rescue LoadError
-      raise Puppet::ParseError, 'uuid(): Unable to load Digest::SHA1 library.'
+      raise Puppet::ParseError, 'uuid(): Unable to load Digest::SHA1 library'
     end
 
     #

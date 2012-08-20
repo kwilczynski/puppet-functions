@@ -71,13 +71,13 @@ For example:
     # and where troubleshooting networking usually takes effort ...
     #
     raise Puppet::ParseError, 'kvm_mac(): An argument given cannot ' +
-      'be an empty string value.' if domain.empty?
+      'be an empty string value' if domain.empty?
 
     # This is probably impossible as Digest is part of the Ruby Core ...
     begin
       require 'digest/sha1'
     rescue LoadError
-      raise Puppet::ParseError, 'kvm_mac(): Unable to load Digest::SHA1 library.'
+      raise Puppet::ParseError, 'kvm_mac(): Unable to load Digest::SHA1 library'
     end
 
     #

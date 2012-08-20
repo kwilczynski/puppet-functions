@@ -68,7 +68,7 @@ For example:
     begin
       require 'digest/sha2'
     rescue LoadError
-      raise Puppet::ParseError, 'sha256sum(): Unable to load Digest::SHA2 library.'
+      raise Puppet::ParseError, 'sha256sum(): Unable to load Digest::SHA2 library'
     end
 
     # Compute and return an SHA1 check sum ...

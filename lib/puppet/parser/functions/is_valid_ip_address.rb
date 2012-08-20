@@ -67,7 +67,7 @@ For example:
     begin
       require 'ipaddr'
     rescue LoadError
-      raise Puppet::ParseError, 'is_valid_ip_address(): Unable to load IPAddr library.'
+      raise Puppet::ParseError, 'is_valid_ip_address(): Unable to load IPAddr library'
     end
 
     result = begin

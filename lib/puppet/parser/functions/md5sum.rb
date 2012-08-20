@@ -68,7 +68,7 @@ For example:
     begin
       require 'digest/md5'
     rescue LoadError
-      raise Puppet::ParseError, 'md5sum(): Unable to load Digest::MD5 library.'
+      raise Puppet::ParseError, 'md5sum(): Unable to load Digest::MD5 library'
     end
 
     # Compute and return an MD5 check sum ...
