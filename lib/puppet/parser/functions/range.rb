@@ -22,7 +22,8 @@ Returns
 
 Prototype:
 
-    range()
+    range(a, b)
+    range(a, b, s)
 
 Where
 
@@ -32,6 +33,10 @@ For example:
 
   The result will be as follows:
 
+  Known issues:
+
+    Currently, using zero-padding and negative integer values for either
+    start or stop parameters may result in undesirable outcome.
     EOS
   ) do |*arguments|
     #
@@ -41,50 +46,85 @@ For example:
     #
     arguments = arguments.shift if arguments.first.is_a?(Array)
 
-    # We support more than one argument but at least one is mandatory ...
-    raise(Puppet::ParseError, "range(): Wrong number of " +
-      "arguments given (#{arguments.size} for 1)") if arguments.size < 1
+    # We support three arguments but at least two are mandatory ...
+    raise Puppet::ParseError, "range(): Wrong number of arguments " +
+      "given (#{arguments.size} for 2)" if arguments.size < 2
 
-    if arguments.size > 1
-      start = arguments[0]
-      stop  = arguments[1]
+    start = arguments.shift
+    stop  = arguments.shift
 
-      type = '..' # We select simplest type for Range available in Ruby ...
+    step = arguments.shift || 1
 
-    elsif arguments.size > 0
-      value = arguments[0]
+    %w(start stop).each do |i|
+      i = eval(i)
 
-      if m = value.match(/^(\w+)(\.\.\.?|\-)(\w+)$/)
-        start = m[1]
-        stop  = m[3]
-
-        type = m[2]
-
-      elsif value.match(/^.+$/)
-        raise(Puppet::ParseError, 'range(): Unable to compute range ' +
-          'from the value given')
-      else
-        raise(Puppet::ParseError, 'range(): Unknown format of range given')
+      # This should cover all the generic numeric types present in Puppet ...
+      unless i.class.ancestors.include?(Numeric) or i.is_a?(String)
+        raise Puppet::ParseError, 'range(): Requires a numeric ' +
+          'type to work with'
       end
+
+      raise Puppet::ParseError, 'range(): An argument given cannot ' +
+        'be an empty string value' if i.is_a?(String) and i.empty?
     end
 
-      # Check whether we have integer value if so then make it so ...
-      if start.match(/^\d+$/)
-        start = start.to_i
-        stop  = stop.to_i
-      else
-        start = start.to_s
-        stop  = stop.to_s
+    # Numbers in Puppet are often string-encoded which is troublesome ...
+    if step.is_a?(Integer) or (step.is_a?(String) and step.match(/^-?\d+$/))
+      # An Integer value should match ...
+      step = step.to_i
+
+      # Step cannot be of an negative size ...
+      raise Puppet::ParseError, 'range(): Requires a non-negative ' +
+        'integer value to work with' if step < 0
+    else
+      raise Puppet::ParseError, 'range(): Requires an integer ' +
+        'value to work with'
+    end
+
+    # Puppet and its string-encoded numeric values. Sickening ...
+    start = start.to_s if start.is_a?(Integer)
+    stop  = stop.to_s  if stop.is_a?(Integer)
+
+    range = []
+
+    # We have a mixture of numeric values and characters, or just characters ...
+    if start.match(/-?\d+/) and stop.match(/-?\d+/)
+      pattern = start.clone
+
+      start = start.match(/-?\d+/)[0]
+      stop  = stop.match(/-?\d+/)[0]
+
+      zero_padding = begin
+        count = 0
+
+        %w(start stop).each do |i|
+          value = eval(i).match(/-?\d+/)[0]
+          count = value.size if value.match(/^0+/) and value.size > count
+        end
+
+        count
       end
 
-      range = case type
-        when /^(\.\.|\-)$/ then (start .. stop)
-        when /^(\.\.\.)$/  then (start ... stop) # Exclusive of last element ...
+      start = start.to_i
+      stop  = stop.to_i
+
+      raise Puppet::ParseError, 'range(): An invalid start or stop ' +
+        'value given' if start > stop
+
+      range = (start .. stop).step(step).collect do |i|
+        pattern.sub(/-?\d+/, sprintf("%0#{zero_padding}i", i))
       end
+    elsif start.match(/\D+/) and stop.match(/\D+/)
+      start = start.to_s
+      stop  = stop.to_s
 
-      result = range.collect { |i| i } # Get them all ... Pokemon ...
+      range = (start .. stop).step(step).to_a
+    else
+      raise Puppet::ParseError, 'range(): An incompatible ' +
+        'start or stop value given'
+    end
 
-    return result
+    range
   end
 end
 
