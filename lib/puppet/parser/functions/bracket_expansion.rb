@@ -53,6 +53,11 @@ For example:
     notice: Scope(Class[main]): 01.ghi1.test 01.ghi2.test 03.ghi1.test 03.ghi2.test 05.ghi1.test 05.ghi2.test
     notice: Scope(Class[main]): jkl01.test001 jkl01.test002 jkl02.test001 jkl02.test002 jkl42.test001 jkl42.test002
     notice: Scope(Class[main]): xyz1 xyz3 xyz5 xyz7 xyz9
+
+  Known issues:
+
+    Currently, using zero-padding and negative integer values for either
+    start or stop parameters may result in undesirable outcome.
     EOS
   ) do |*arguments|
     #
@@ -113,18 +118,21 @@ For example:
       bracket.split(',').each do |expression|
         expression.strip!
 
+        raise Puppet::ParseError, 'bracket_expansion(): An incompatible value ' +
+          'given in bracket expansion pattern' unless expression.match(/-?\d+/)
+
         count = 0
 
-        if match = expression.match(/^(\d+)\-(\d+)$/)
+        if match = expression.match(/^(-?\d+)\-(-?\d+)$/)
           # Get start and stop pair when a rage is given ...
           start = match[1].to_i
           stop  = match[2].to_i
 
           raise Puppet::ParseError, 'bracket_expansion(): An invalid ' +
-            'start and stop value given' if start > stop
+            'start or stop value given' if start > stop
 
           match.captures.each do |i|
-            value = i.match(/\d+/)[0]
+            value = i.match(/-?\d+/)[0]
             count = value.size if value.match(/^0+/) and value.size > count
           end
 
@@ -132,7 +140,7 @@ For example:
           values += (start .. stop).step(step).to_a
         else
           # The longest match (in terms of number of zeros) in zero-padding wins ...
-          value = expression.match(/\d+/)[0]
+          value = expression.match(/-?\d+/)[0]
           count = value.size if value.match(/^0+/)
 
           values << value.to_i
