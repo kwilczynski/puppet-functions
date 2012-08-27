@@ -18,25 +18,38 @@
 
 module Puppet::Parser::Functions
   newfunction(:strip, :type => :rvalue, :doc => <<-EOS
-Returns
+Return either a new array or string by removing leading and trailing whitespace
+characters from elements within.
 
 Prototype:
 
-    strip()
+    strip(x)
 
-Where
+Where x is either an array type or string value.
 
 For example:
 
   Given the following statements:
 
-    $a =
+    $a = 'abc '
+    $b = ' def '
+    $c = [' gh', ' i ', 'j ']
 
-    notice strip()
+    notice strip($a)
+    notice strip($b)
+    notice dump($b)
+    notice dump(strip($b))
+    notice dump($c)
+    notice dump(strip($c))
 
   The result will be as follows:
 
-    notice: Scope(Class[main]):
+    notice: Scope(Class[main]): abc
+    notice: Scope(Class[main]): def
+    notice: Scope(Class[main]): " def "
+    notice: Scope(Class[main]): "def"
+    notice: Scope(Class[main]): [" gh", " i ", "j "]
+    notice: Scope(Class[main]): ["gh", "i", "j"]
     EOS
   ) do |*arguments|
     #
