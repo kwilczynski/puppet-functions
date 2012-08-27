@@ -18,20 +18,34 @@
 
 module Puppet::Parser::Functions
   newfunction(:is_upcase, :type => :rvalue, :doc => <<-EOS
-Returns
+Returns true if given string value contains only upper-case letters and false otherwise.
 
 Prototype:
 
-    is_upcase()
+    is_upcase(s)
 
-Where
+Where s is a string value.
 
 For example:
 
   Given the following statements:
 
+    $a = 'ABC'
+    $b = 'def'
+    $c = 'Ghi'
+    $d = 'jKl'
+
+    notice is_upcase($a)
+    notice is_upcase($b)
+    notice is_upcase($c)
+    notice is_upcase($d)
+
   The result will be as follows:
 
+    notice: Scope(Class[main]): true
+    notice: Scope(Class[main]): false
+    notice: Scope(Class[main]): false
+    notice: Scope(Class[main]): false
     EOS
   ) do |*arguments|
     #

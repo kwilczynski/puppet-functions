@@ -18,20 +18,35 @@
 
 module Puppet::Parser::Functions
   newfunction(:is_capitalize, :type => :rvalue, :doc => <<-EOS
-Returns
+Returns true if given string value is capitalize (alternatively known as
+title-case) and false otherwise.
 
 Prototype:
 
-    is_capitalize()
+    is_capitalize(s)
 
-Where
+Where s is a string value.
 
 For example:
 
   Given the following statements:
 
+    $a = 'ABC'
+    $b = 'def'
+    $c = 'Ghi'
+    $d = 'jKl'
+
+    notice is_capitalize($a)
+    notice is_capitalize($b)
+    notice is_capitalize($c)
+    notice is_capitalize($d)
+
   The result will be as follows:
 
+    notice: Scope(Class[main]): false
+    notice: Scope(Class[main]): false
+    notice: Scope(Class[main]): true
+    notice: Scope(Class[main]): false
     EOS
   ) do |*arguments|
     #

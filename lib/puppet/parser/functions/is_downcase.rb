@@ -18,20 +18,34 @@
 
 module Puppet::Parser::Functions
   newfunction(:is_downcase, :type => :rvalue, :doc => <<-EOS
-Returns
+Returns true if given string value contains only lower-case letters and false otherwise.
 
 Prototype:
 
-    is_downcase()
+    is_downcase(s)
 
-Where
+Where s is a string value.
 
 For example:
+
+    $a = 'ABC'
+    $b = 'def'
+    $c = 'Ghi'
+    $d = 'jKl'
+
+    notice is_downcase($a)
+    notice is_downcase($b)
+    notice is_downcase($c)
+    notice is_downcase($d)
 
   Given the following statements:
 
   The result will be as follows:
 
+    notice: Scope(Class[main]): false
+    notice: Scope(Class[main]): true
+    notice: Scope(Class[main]): false
+    notice: Scope(Class[main]): false
     EOS
   ) do |*arguments|
     #
