@@ -18,9 +18,9 @@
 
 module Puppet::Parser::Functions
   newfunction(:deep_merge, :type => :rvalue, :doc => <<-EOS
-Returns a new hash that contains items from both the first hash and the second
-hash concerning any level (depth) of both hashes, where any duplicate items (keys)
-being over-written using values from the second hash.
+Returns a new hash that contains elements from both the first hash and the
+second hash concerning any level (depth) of both hashes, where any duplicate
+elements (keys) being over-written using values from the second hash.
 
 Prototype:
 

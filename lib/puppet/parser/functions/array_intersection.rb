@@ -18,8 +18,8 @@
 
 module Puppet::Parser::Functions
   newfunction(:array_intersection, :type => :rvalue, :doc => <<-EOS
-Returns a new array that only contains items common in both arrays given,
-with all duplicate items removed.
+Returns a new array that only contains elements common in both arrays given,
+with all duplicate elements removed.
 
 Prototype:
 

@@ -18,8 +18,8 @@
 
 module Puppet::Parser::Functions
   newfunction(:array_difference, :type => :rvalue, :doc => <<-EOS
-Returns a new array that will include items from the first array
-removing any items that also appear in the second array given.
+Returns a new array that will include elements from the first array
+removing any elements that also appear in the second array given.
 
 Prototype:
 
