@@ -18,20 +18,30 @@
 
 module Puppet::Parser::Functions
   newfunction(:merge, :type => :rvalue, :doc => <<-EOS
-Returns
+Returns a new hash that contains items from both the first hash and the second
+hash where any duplicate items (keys) being over-written using values from the
+second hash.
 
 Prototype:
 
-    merge()
+    merge(a, b)
 
-Where
+Where both a and b are of a hash type.
 
 For example:
 
   Given the following statements:
 
+    $a = { 'a' => 1, 'b' => 2, 'c' => 3 }
+    $b = { 'd' => 123, 'e' => 456, 'b' => 42 }
+
+    notice merge($a, $b)
+    notice dump(merge($a, $b))
+
   The result will be as follows:
 
+    notice: Scope(Class[main]): a1b42c3d123e456
+    notice: Scope(Class[main]): {"a"=>"1", "b"=>"42", "c"=>"3", "d"=>"123", "e"=>"456"}
     EOS
   ) do |*arguments|
     #
