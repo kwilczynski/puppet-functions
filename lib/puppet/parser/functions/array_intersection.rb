@@ -57,11 +57,11 @@ For example:
       "given (#{arguments.size} for 2)" if arguments.size < 1
 
     one = arguments.shift
-    two = arguments.shift 
+    two = arguments.shift
 
-    %w(one two).each do |i|
+    [one, two].each do |i|
       raise Puppet::ParseError, 'array_intersection(): Requires an array type ' +
-        'to work with' unless eval(i).is_a?(Array)
+        'to work with' unless i.is_a?(Array)
     end
 
     one & two

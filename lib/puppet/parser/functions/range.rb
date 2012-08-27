@@ -55,9 +55,7 @@ For example:
 
     step = arguments.shift || 1
 
-    %w(start stop).each do |i|
-      i = eval(i)
-
+    [start, stop].each do |i|
       # This should cover all the generic numeric types present in Puppet ...
       unless i.class.ancestors.include?(Numeric) or i.is_a?(String)
         raise Puppet::ParseError, 'range(): Requires a numeric ' +
@@ -97,8 +95,8 @@ For example:
       zero_padding = begin
         count = 0
 
-        %w(start stop).each do |i|
-          value = eval(i).match(/-?\d+/)[0]
+        [start, stop].each do |i|
+          value = i.match(/-?\d+/)[0]
           count = value.size if value.match(/^0+/) and value.size > count
         end
 

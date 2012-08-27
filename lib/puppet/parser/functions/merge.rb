@@ -44,15 +44,13 @@ For example:
     raise Puppet::ParseError, "merge(): Wrong number of arguments " +
       "given (#{arguments.size} for 2)" if arguments.size < 2
 
-    this = arguments.shift
-
-    raise Puppet::ParseError, 'merge(): First argument requires ' +
-      'a hash type to work with' unless this.is_a?(Hash)
-
+    this  = arguments.shift
     other = arguments.shift
 
-    raise Puppet::ParseError, 'merge(): Second argument requires ' +
-      'a hash type to work with' unless other.is_a?(Hash)
+    [this, other].each do |i|
+      raise Puppet::ParseError, 'merge(): Requires a hash type ' +
+        'to work with' unless i.is_a?(Hash)
+    end
 
     # We have to be compliant with Hash#merge merge priority ...
     this.merge(other)
