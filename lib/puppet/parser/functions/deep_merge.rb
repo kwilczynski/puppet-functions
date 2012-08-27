@@ -18,20 +18,30 @@
 
 module Puppet::Parser::Functions
   newfunction(:deep_merge, :type => :rvalue, :doc => <<-EOS
-Returns
+Returns a new hash that contains items from both the first hash and the second
+hash concerning any level (depth) of both hashes, where any duplicate items (keys)
+being over-written using values from the second hash.
 
 Prototype:
 
-    deep_merge()
+    deep_merge(a, b)
 
-Where
+Where both a and b are of a hash type.
 
 For example:
 
   Given the following statements:
 
+    $a = { 'a' => 1, 'b' => { 'c' => { 'd' => 2, 'e' => 3, 'f' => 4 } } }
+    $b = { 'a' => 1, 'b' => { 'c' => { 'd' => 42, 'f' => 8 } } }
+
+    notice deep_merge($a, $b)
+    notice dump(deep_merge($a, $b))
+
   The result will be as follows:
 
+    notice: Scope(Class[main]): a1bcd42e3f8
+    notice: Scope(Class[main]): {"a"=>"1", "b"=>{"c"=>{"d"=>"42", "e"=>"3", "f"=>"8"}}}
     EOS
   ) do |*arguments|
     #
@@ -53,7 +63,7 @@ For example:
     end
 
     # We have to be compliant with Hash#merge merge priority ...
-    callback = Proc.new do |this, other|
+    callback = Proc.new do |key, this, other|
       if this.is_a?(Hash) and other.is_a?(Hash)
         other.merge(this, &callback)
       else
@@ -61,7 +71,7 @@ For example:
       end
     end
 
-    other.merge(this, &callback)
+    this.merge(other, &callback)
   end
 end
 
