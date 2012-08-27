@@ -18,20 +18,46 @@
 
 module Puppet::Parser::Functions
   newfunction(:is_float, :type => :rvalue, :doc => <<-EOS
-Returns
+Returns true if given arbitrary value is of a float type and false otherwise.
 
 Prototype:
 
-    is_float()
+    is_float(x)
 
-Where
+Where x is a value of an arbitrary type.
 
 For example:
 
   Given the following statements:
 
+    $a = true
+    $b = 1
+    $c = -1
+    $d = 1.0
+    $e = -1.0
+    $f = ''
+    $g = []
+    $h = {}
+
+    notice is_float($a)
+    notice is_float($b)
+    notice is_float($c)
+    notice is_float($d)
+    notice is_float($e)
+    notice is_float($f)
+    notice is_float($g)
+    notice is_float($h)
+
   The result will be as follows:
 
+    notice: Scope(Class[main]): false
+    notice: Scope(Class[main]): false
+    notice: Scope(Class[main]): false
+    notice: Scope(Class[main]): true
+    notice: Scope(Class[main]): true
+    notice: Scope(Class[main]): false
+    notice: Scope(Class[main]): false
+    notice: Scope(Class[main]): false
     EOS
   ) do |*arguments|
     #
@@ -41,6 +67,27 @@ For example:
     #
     arguments = arguments.shift if arguments.first.is_a?(Array)
 
+    raise Puppet::ParseError, "is_float(): Wrong number of arguments " +
+      "given (#{arguments.size} for 1)" if arguments.size < 1
+
+    value = arguments.shift
+
+    # This should cover all the generic numeric types present in Puppet ...
+    result = if value.class.ancestors.include?(Numeric) or value.is_a?(String)
+      # Puppet and its string-encoded numeric values. Sickening ...
+      value = value.to_s if value.is_a?(Numeric)
+
+      begin
+        # Try to capture given string-encoded Numeric as a Float ...
+        value.match(/^-?(?:\d+)(?:\.\d+){1}$/) && Float(value) ? true : false
+      rescue TypeError, ArgumentError
+        false
+      end
+    else
+      false
+    end
+
+    result
   end
 end
 
