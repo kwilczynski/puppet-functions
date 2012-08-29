@@ -18,14 +18,15 @@
 
 module Puppet::Parser::Functions
   newfunction(:bracket_expansion, :type => :rvalue, :doc => <<-EOS
-Returns
+Returns a new array that contains a list of elements upon expanding given
+bracket expansion pattern, applying step factor accordingly.
 
 Prototype:
 
     bracket_expansion(p)
     bracket_expansion(p, s)
 
-Where
+Where p is a string value, and where s is a non-negative integer value.
 
 For example:
 
@@ -58,7 +59,7 @@ For example:
 
     Currently, using zero-padding and negative integer values for either
     start or stop parameters may result in undesirable outcome.
-    EOS
+  EOS
   ) do |*arguments|
     #
     # This is to ensure that whenever we call this function from within
