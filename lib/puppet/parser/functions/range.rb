@@ -18,26 +18,45 @@
 
 module Puppet::Parser::Functions
   newfunction(:range, :type => :rvalue, :doc => <<-EOS
-Returns
+Returns a new array that contains a list of elements upon expanding values
+between given start and stop interval, applying step factor accordingly.
 
 Prototype:
 
     range(a, b)
     range(a, b, s)
 
-Where
+Where both a and b are either a string or numeric values, and where s
+is a non-negative integer value.
 
 For example:
 
   Given the following statements:
 
+    $a = 1
+    $b = 10
+    $c = 'a'
+    $d = 'z'
+    $e = 'abc1'
+    $f = 'abc010'
+
+    notice range($a, $b)
+    notice range($a, $b, 2)
+    notice range($c, $d)
+    notice range($e, $f)
+
   The result will be as follows:
+
+    notice: Scope(Class[main]): 1 2 3 4 5 6 7 8 9 10
+    notice: Scope(Class[main]): 1 3 5 7 9
+    notice: Scope(Class[main]): a b c d e f g h i j k l m n o p q r s t u v w x y z
+    notice: Scope(Class[main]): abc001 abc002 abc003 abc004 abc005 abc006 abc007 abc008 abc009 abc010
 
   Known issues:
 
     Currently, using zero-padding and negative integer values for either
     start or stop parameters may result in undesirable outcome.
-    EOS
+  EOS
   ) do |*arguments|
     #
     # This is to ensure that whenever we call this function from within
