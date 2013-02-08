@@ -18,7 +18,7 @@
 
 module Puppet::Parser::Functions
   newfunction(:member, :type => :rvalue, :doc => <<-EOS
-    EOS
+
 Returns
 
 Prototype:
