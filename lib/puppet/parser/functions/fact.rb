@@ -83,7 +83,7 @@ For example:
         # back for use within the Puppet DSL and empty string is as closest
         # to actual undef as you we can get at this point in time ...
         #
-        i = lookupvar(i) ||= ''
+        i = lookupvar(i) || ''
 
         result << i
       end
